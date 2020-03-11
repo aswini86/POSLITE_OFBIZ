@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-engine-xml>
+    <SecurityGroupPermission groupId="FULLADMIN" permissionId="UNMAPPEDPRODUCTS_ADMIN"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="UNMAPPEDPRODUCTS_CREATE"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="UNMAPPEDPRODUCTS_DELETE"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="UNMAPPEDPRODUCTS_UPDATE"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="UNMAPPEDPRODUCTS_VIEW"/>
+    <SecurityGroupPermission groupId="VIEWADMIN" permissionId="UNMAPPEDPRODUCTS_VIEW"/>
+    <SecurityGroupPermission groupId="BIZADMIN" permissionId="UNMAPPEDPRODUCTS_ADMIN"/>
+</entity-engine-xml>

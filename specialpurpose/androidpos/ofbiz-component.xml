@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ofbiz-component name="androidpos" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/ofbiz-component.xsd">
+    <resource-loader name="main" type="component"/>
+
+    <classpath type="dir" location="config"/>
+    <classpath type="dir" location="dtd"/>
+
+    <entity-resource type="model" reader-name="main" loader="main" location="entitydef/entitymodel.xml"/>
+    
+    <entity-resource type="data" reader-name="seed" loader="main" location="data/AndroidposTypeData.xml"/>
+    <entity-resource type="data" reader-name="seed" loader="main" location="data/AndroidposSecurityPermissionSeedData.xml"/>
+    <entity-resource type="data" reader-name="demo" loader="main" location="data/AndroidposSecurityGroupDemoData.xml"/>
+    <entity-resource type="data" reader-name="demo" loader="main" location="data/AndroidposDemoData.xml"/>
+
+    <service-resource type="model" loader="main" location="servicedef/services.xml"/>
+    
+    <test-suite loader="main" location="testdef/AndroidposTests.xml"/>
+
+    <webapp name="androidpos" title="Androidpos" server="default-server" location="webapp/androidpos" base-permission="OFBTOOLS,ANDROIDPOS" mount-point="/androidpos"/>
+</ofbiz-component>

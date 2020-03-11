@@ -1,0 +1,772 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/services.xsd">
+    <description>Androidpos Services</description>
+    <vendor></vendor>
+    <version>1.0</version>
+    
+    <service name="createPOSTerminal" default-entity-name="POSTerminal" engine="entity-auto" invoke="create" auth="false" export="true">
+        <description>Add new terminal for user in Android POS</description>
+        <attribute name="terminalId" type="String" mode="IN" optional="false"/>		
+        <attribute name="userId" type="String" mode="IN" optional="false"/>
+        <attribute name="posTerminal" type="org.apache.ofbiz.entity.GenericValue" mode="OUT" optional="true"/>                    
+    </service>
+    
+    <service name="findPOSTerminals" default-entity-name="POSTerminal" engine="java" location="ofbiz.android.pos.AndroidPos" invoke="findPOSTerminals" auth="true" export="true">
+        <description>Find terminal for user in Android POS</description>
+        <attribute name="userId" type="String" mode="IN" optional="true"/>        
+        <attribute name="posTerminals" type="java.util.List" mode="OUT" optional="true"/>
+    </service>
+    
+    <service name="findPOSTerminal" default-entity-name="POSTerminal" engine="java" location="ofbiz.android.pos.AndroidPos" invoke="findPOSTerminal" auth="true" export="true">
+        <description>Find terminal for user in Android POS</description>
+        <attribute name="terminalId" type="String" mode="IN" optional="false"/>        
+        <attribute name="posTerminal" type="org.apache.ofbiz.entity.GenericValue" mode="OUT" optional="true"/>
+    </service>
+
+    <service name="createDay" default-entity-name="DayDetail" engine="java" location="ofbiz.android.pos.AndroidPos" invoke="createDay" auth="true" export="true">
+        <description>Open day in Android POS</description>
+        <attribute name="day" type="String" mode="IN" optional="false"/>
+        <attribute name="terminalId" type="String" mode="IN" optional="false"/>
+        <attribute name="userId" type="String" mode="IN" optional="false"/>
+        <attribute name="dayStatus" type="String" mode="IN" optional="false"/>
+        <attribute name="receiptId" type="String" mode="IN" optional="false"/>
+        
+        <attribute name="openingDayCount2000" type="Long" mode="IN" optional="false"/>
+        <attribute name="openingDayCount500" type="Long" mode="IN" optional="false"/>
+        <attribute name="openingDayCount200" type="Long" mode="IN" optional="false"/>
+        <attribute name="openingDayCount100" type="Long" mode="IN" optional="false"/>
+        <attribute name="openingDayCount50" type="Long" mode="IN" optional="false"/>
+        <attribute name="openingDayCount20" type="Long" mode="IN" optional="false"/>
+        <attribute name="openingDayCount10" type="Long" mode="IN" optional="false"/>
+        <attribute name="openingDayCount5" type="Long" mode="IN" optional="false"/>
+        <attribute name="openingDayCount2" type="Long" mode="IN" optional="false"/>
+        <attribute name="openingDayCount1" type="Long" mode="IN" optional="false"/>
+        
+        <attribute name="androidDeviceVersion" type="String" mode="IN" optional="false"/>
+        <attribute name="androidDeviceId" type="String" mode="IN" optional="false"/>
+        <attribute name="androidAPKVersion" type="String" mode="IN" optional="false"/>
+        
+        <attribute name="dayDetail" type="org.apache.ofbiz.entity.GenericValue" mode="OUT" optional="true"/>
+    </service>
+    
+    <service name="findDays" default-entity-name="DayDetail" engine="java" location="ofbiz.android.pos.AndroidPos" invoke="findDays" auth="true" export="true">
+        <description>Find day in Android POS</description>
+        <attribute name="terminalId" type="String" mode="IN" optional="true"/>
+        <attribute name="userId" type="String" mode="IN" optional="true"/>
+        <attribute name="day" type="String" mode="IN" optional="true"/>
+        <attribute name="dayStatus" type="String" mode="IN" optional="true"/>
+        <attribute name="adminOpeningDayStatus" type="String" mode="IN" optional="true"/>
+        <attribute name="adminClosingDayStatus" type="String" mode="IN" optional="true"/>
+        <attribute name="storeId" type="String" mode="IN" optional="true"/>
+        
+        <attribute name="dayDetails" type="java.util.List" mode="OUT" optional="true"/>
+    </service>
+    
+    <service name="findDay" default-entity-name="DayDetail" engine="java" location="ofbiz.android.pos.AndroidPos" invoke="findDay" auth="true" export="true">
+        <description>Find day in Android POS</description>
+        <attribute name="dayId" type="String" mode="IN" optional="true"/>
+        
+        <attribute name="dayDetail" type="org.apache.ofbiz.entity.GenericValue" mode="OUT" optional="true"/>
+    </service>
+    
+    <service name="getDayId" default-entity-name="DayDetail" engine="java" location="ofbiz.android.pos.AndroidPos" invoke="getDayId" auth="true" export="true">
+        <description>Get day in Android POS</description>
+        <attribute name="posTerminalId" type="String" mode="IN" optional="true"/>
+        <attribute name="facilityId" type="String" mode="IN" optional="true"/>
+        
+        <attribute name="dayId" type="String" mode="OUT" optional="true"/>
+        <attribute name="receiptId" type="String" mode="OUT" optional="true"/>
+    </service>
+    
+    <service name="updateDay" default-entity-name="DayDetail" engine="java" location="ofbiz.android.pos.AndroidPos" invoke="updateDay" auth="true" export="true">
+        <description>Close day in Android POS</description>
+        <attribute name="dayId" type="String" mode="IN" optional="false"/>
+        
+        <attribute name="day" type="String" mode="IN" optional="true"/>
+        <attribute name="dayStatus" type="String" mode="IN" optional="true"/>        
+        <attribute name="adminOpeningDayStatus" type="String" mode="IN" optional="true"/>
+        <attribute name="adminClosingDayStatus" type="String" mode="IN" optional="true"/>
+        
+        <attribute name="closingDayCount2000" type="Long" mode="IN" optional="true"/>
+        <attribute name="closingDayCount500" type="Long" mode="IN" optional="true"/>
+        <attribute name="closingDayCount200" type="Long" mode="IN" optional="true"/>
+        <attribute name="closingDayCount100" type="Long" mode="IN" optional="true"/>
+        <attribute name="closingDayCount50" type="Long" mode="IN" optional="true"/>
+        <attribute name="closingDayCount20" type="Long" mode="IN" optional="true"/>
+        <attribute name="closingDayCount10" type="Long" mode="IN" optional="true"/>
+        <attribute name="closingDayCount5" type="Long" mode="IN" optional="true"/>
+        <attribute name="closingDayCount2" type="Long" mode="IN" optional="true"/>
+        <attribute name="closingDayCount1" type="Long" mode="IN" optional="true"/>
+        
+        <attribute name="androidDeviceVersion" type="String" mode="IN" optional="false"/>
+        <attribute name="androidDeviceId" type="String" mode="IN" optional="false"/>
+        <attribute name="androidAPKVersion" type="String" mode="IN" optional="false"/>
+        
+        <attribute name="dayDetail" type="org.apache.ofbiz.entity.GenericValue" mode="OUT" optional="true"/>
+    </service>
+    
+    <service name="findPOSProductPrice" engine="java" location="ofbiz.android.pos.AndroidPos" invoke="findPOSProductPrice" auth="true" export="true">
+        <description>Find price of product in Android POS</description>
+        <attribute name="productId" type="String" mode="IN" optional="true"/>
+        <attribute name="productStoreGroupId" type="String" mode="IN" optional="true"/>
+        <attribute name="currencyUomId" type="String" mode="IN" optional="true"/>
+        
+        <attribute name="basePrice" type="BigDecimal" mode="OUT" optional="false"><!-- will only be different from price if there is a display price adjustment, for example: checkIncludeVat=Y and a VAT amount was found --></attribute>
+        <attribute name="price" type="BigDecimal" mode="OUT" optional="false"/>
+        <attribute name="listPrice" type="BigDecimal" mode="OUT" optional="true"/>
+        <attribute name="defaultPrice" type="BigDecimal" mode="OUT" optional="true"/>
+        <attribute name="competitivePrice" type="BigDecimal" mode="OUT" optional="true"/>
+        <attribute name="averageCost" type="BigDecimal" mode="OUT" optional="true"/>
+        <attribute name="promoPrice" type="BigDecimal" mode="OUT" optional="true"/>
+        <attribute name="specialPromoPrice" type="BigDecimal" mode="OUT" optional="true"><!-- used for the Product [Special Promo] Type ProductPromo Action --></attribute>
+        <attribute name="isSale" type="Boolean" mode="OUT" optional="false"/>
+        <attribute name="validPriceFound" type="Boolean" mode="OUT" optional="false"/>
+        <attribute name="currencyUsed" type="String" mode="OUT" optional="false"/>
+        <attribute name="orderItemPriceInfos" type="java.util.List" mode="OUT" optional="false"/>
+        <attribute name="allQuantityPrices" type="java.util.List" mode="OUT" optional="true"/>
+    </service>
+    
+    <service name="findPOSProducts" engine="java" location="ofbiz.android.pos.AndroidPos" invoke="findPOSProducts" auth="true" export="true">
+        <description>Find pos products in Android POS</description>
+        <attribute name="searchBy" type="String" mode="IN" optional="false"/>
+        <attribute name="searchValue" type="String" mode="IN" optional="false"/>
+        
+        <attribute name="products" type="java.util.List" mode="OUT" optional="true"/>
+    </service>
+    
+    <service name="getStockProducts" engine="java" location="ofbiz.android.pos.AndroidPos" invoke="getStockProducts" auth="true" export="true">
+        <description>Find pos products in Android POS</description>
+        <attribute name="searchBy" type="String" mode="IN" optional="false"/>
+        <attribute name="searchValue" type="String" mode="IN" optional="false"/>
+        
+        <attribute name="products" type="java.util.List" mode="OUT" optional="true"/>
+    </service>
+    
+    <service name="posCheckout" engine="java" location="ofbiz.android.pos.AndroidPos" invoke="posCheckout" auth="true" export="true">
+        <description>checkout in Android POS</description>
+        <attribute name="posTerminalId" type="String" mode="IN" optional="false"/>
+        <!-- <attribute name="productList" type="java.util.List" mode="IN" optional="false"/> -->
+    </service>
+    <service name="findDayDetails" default-entity-name="DayDetail" engine="java" location="ofbiz.android.pos.AndroidPos" invoke="findDayDetails" auth="true" export="true">
+        <description>Find day in Android POS</description>
+        <attribute name="dayId" type="String" mode="IN" optional="true"/>
+        <attribute name="day" type="String" mode="IN" optional="true"/>
+        <attribute name="terminalId" type="String" mode="IN" optional="true"/>
+        <attribute name="login.username" type="String" mode="IN" optional="true"/>
+        
+        <attribute name="DayDetails" type="java.util.List" mode="OUT" optional="true"/>
+    </service>
+    <service name="derivedKey" engine="java" location="ofbiz.android.pos.AndroidPos" invoke="derivedKey" auth="true" export="true">
+        <description>Pos bill payment</description>
+        <attribute name="billId" type="String" mode="IN" optional="false"/>
+        <attribute name="cartAmt" type="Double" mode="IN" optional="false"/>
+        <attribute name="derivedKey" type="String" mode="OUT" optional="false"/>
+    </service>
+    <service name="updateProductEAN" engine="java" location="ofbiz.android.pos.AndroidPos" invoke="updateProductEAN" auth="true" export="true">
+        <description>update Product EAN</description>
+        <attribute name="Sucess" type="String" mode="OUT" optional="false"/>
+    </service>
+    <service name="updateProductPriceTax" engine="java" location="ofbiz.android.pos.AndroidPos" invoke="updateProductPriceTax" auth="true" export="true">
+        <description>update Product Price Tax</description>
+        <attribute name="Sucess" type="String" mode="OUT" optional="false"/>
+    </service>
+    <service name="findSuppliers" engine="java" location="ofbiz.android.pos.AndroidPos" invoke="findSuppliers" auth="false" export="true">
+        <description>Find Suppliers</description>
+        <attribute name="roleTypeId" type="String" mode="IN" optional="false"/>
+        <attribute name="partyRoleList" type="java.util.List" mode="OUT" optional="false"/>
+    </service>
+    <service name="findVendorProducts" engine="java" 
+    location="ofbiz.android.pos.AndroidPos" invoke="findVendorProducts" auth="false" export="true">
+		<attribute name="productId" type="String" mode="IN" optional="true"/>
+		<attribute name="supplierId" type="String" mode="IN" optional="true"/>
+		<attribute name="currencyUomId" type="String" mode="IN" optional="true"/>
+		<attribute name="productStoreId" type="String" mode="IN" optional="true"/>
+		<attribute name="categoryId" type="String" mode="IN" optional="true"/>
+		<attribute name="finalProductPriceInfoList" type="List" mode="OUT"/>
+		<attribute name="productIdArray" type="java.util.ArrayList" mode="OUT"/>
+                      
+    </service>
+    
+    <service name="createPurchaseOrderTxn" engine="java" location="ofbiz.android.pos.AndroidPos" invoke="createPurchaseOrderTxn" 
+    	auth="false" use-transaction="false" export="true">
+    	
+        <description>Save Purchase Order</description>
+        
+        <attribute name="productStoreId" type="String" mode="IN" optional="true" />
+        <attribute name="currencyUomId" type="String" mode="IN" optional="true" />
+        <attribute name="supplierId" type="String" mode="IN" optional="true" />
+        <attribute name="poDate" type="String" mode="IN" optional="true" />
+        <attribute name="validBy" type="String" mode="IN" optional="true" />
+        <attribute name="statusId" type="String" mode="IN" optional="true" />
+        <attribute name="orderItemArray" type="String" mode="IN" optional="true" />
+        <attribute name="orderQuantityArray" type="String" mode="IN" optional="true" />
+        <attribute name="orderItemMRPArray" type="String" mode="IN" optional="true" />
+        <attribute name="oiOfferRateArray" type="String" mode="IN" optional="true" />
+        <attribute name="oiTaxRateArray" type="String" mode="IN" optional="true" />
+        <attribute name="sgstAmtArray" type="String" mode="IN" optional="true" />
+        <attribute name="cgstAmtArray" type="String" mode="IN" optional="true" />
+        <attribute name="igstAmtArray" type="String" mode="IN" optional="true" />
+        
+        <attribute name="orderId" type="String" mode="OUT" optional="true" />
+    </service>
+    
+    <service name="editPurchaseOrderTxn" engine="java" location="ofbiz.android.pos.AndroidPos" invoke="editPurchaseOrderTxn" 
+    	auth="false" use-transaction="false" export="true">
+    	
+        <description>Edit Purchase Order</description>
+        
+        <attribute name="orderId" type="String" mode="INOUT" optional="true" />
+        <attribute name="productStoreId" type="String" mode="IN" optional="true" />
+        <attribute name="currencyUomId" type="String" mode="IN" optional="true" />
+        <attribute name="supplierId" type="String" mode="IN" optional="true" />
+        <attribute name="poDate" type="String" mode="IN" optional="true" />
+        <attribute name="validBy" type="String" mode="IN" optional="true" />
+        <attribute name="statusId" type="String" mode="IN" optional="true" />
+        <attribute name="orderItemArray" type="String" mode="IN" optional="true" />
+        <attribute name="orderQuantityArray" type="String" mode="IN" optional="true" />
+        <attribute name="orderItemMRPArray" type="String" mode="IN" optional="true" />
+        <attribute name="oiOfferRateArray" type="String" mode="IN" optional="true" />
+        <attribute name="oiTaxRateArray" type="String" mode="IN" optional="true" />
+        <attribute name="sgstAmtArray" type="String" mode="IN" optional="true" />
+        <attribute name="cgstAmtArray" type="String" mode="IN" optional="true" />
+        <attribute name="igstAmtArray" type="String" mode="IN" optional="true" />
+        
+    </service>
+    
+    <service name="confirmPurchaseOrderTxn" engine="java" location="ofbiz.android.pos.AndroidPos" invoke="confirmPurchaseOrderTxn" 
+    	auth="false" use-transaction="false" export="true">
+    	
+        <description>Confirm Purchase Order</description>
+        
+        <attribute name="productStoreId" type="String" mode="IN" optional="true" />
+        <attribute name="currencyUomId" type="String" mode="IN" optional="true" />
+        <attribute name="supplierId" type="String" mode="IN" optional="true" />
+        <attribute name="poDate" type="String" mode="IN" optional="true" />
+        <attribute name="validBy" type="String" mode="IN" optional="true" />
+        <attribute name="statusId" type="String" mode="IN" optional="true" />
+        <attribute name="orderItemArray" type="String" mode="IN" optional="true" />
+        <attribute name="orderQuantityArray" type="String" mode="IN" optional="true" />
+        <attribute name="orderItemMRPArray" type="String" mode="IN" optional="true" />
+        <attribute name="oiOfferRateArray" type="String" mode="IN" optional="true" />
+        <attribute name="oiTaxRateArray" type="String" mode="IN" optional="true" />
+        <attribute name="sgstAmtArray" type="String" mode="IN" optional="true" />
+        <attribute name="cgstAmtArray" type="String" mode="IN" optional="true" />
+        <attribute name="igstAmtArray" type="String" mode="IN" optional="true" />
+        
+        <attribute name="orderId" type="String" mode="INOUT" optional="true" />
+    </service>
+    <service name="findPurchaseOrder" engine="java" location="ofbiz.android.pos.AndroidPos" invoke="findPurchaseOrder" 
+    	auth="false" use-transaction="false" export="true">
+    	
+        <description>Find Purchase Order</description>
+        
+        <attribute name="orderId" type="String" mode="IN" optional="true" />
+        <attribute name="orderFlowType" type="String" mode="IN" optional="true" />
+        <attribute name="productStoreId" type="String" mode="IN" optional="true" />
+        <attribute name="currencyUomId" type="String" mode="IN" optional="true" />
+        <attribute name="orderStatusId" type="String" mode="IN" optional="true" />
+        <attribute name="orderFromDate" type="String" mode="IN" optional="true" />
+        <attribute name="orderThruDate" type="String" mode="IN" optional="true" />
+        
+        <attribute name="orderList" type="List" mode="OUT" optional="true" />
+        <attribute name="orderItemList" type="List" mode="OUT" optional="true" />
+    </service>
+    <service name="findPurchaseOrderItems" engine="java" location="ofbiz.android.pos.AndroidPos" invoke="findPurchaseOrderItems" 
+    	auth="false" use-transaction="false" export="true">
+    	
+        <description>Find Purchase Order</description>
+        
+        <attribute name="orderId" type="String" mode="IN" optional="true" />
+        <attribute name="orderFlowType" type="String" mode="IN" optional="true" />
+        <attribute name="productStoreId" type="String" mode="IN" optional="true" />
+        <attribute name="currencyUomId" type="String" mode="IN" optional="true" />
+        <attribute name="orderStatusId" type="String" mode="IN" optional="true" />
+        <attribute name="orderFromDate" type="String" mode="IN" optional="true" />
+        <attribute name="orderThruDate" type="String" mode="IN" optional="true" />
+        
+        <attribute name="orderList" type="List" mode="OUT" optional="true" />
+        <attribute name="orderItemList" type="List" mode="OUT" optional="true" />
+        <attribute name="orderItemArray" type="java.util.ArrayList" mode="OUT"/>
+        <attribute name="orderQuantityArray" type="java.util.ArrayList" mode="OUT"/>
+        <attribute name="orderItemMRPArray" type="java.util.ArrayList" mode="OUT"/>
+        <attribute name="oiOfferRateArray" type="java.util.ArrayList" mode="OUT"/>
+        <attribute name="oiTaxRateArray" type="java.util.ArrayList" mode="OUT"/>
+        <attribute name="sgstAmtArray" type="java.util.ArrayList" mode="OUT"/>
+        <attribute name="cgstAmtArray" type="java.util.ArrayList" mode="OUT"/>
+        <attribute name="igstAmtArray" type="java.util.ArrayList" mode="OUT"/>
+    </service>
+    <service name="generateReceiptId" default-entity-name="DayDetail" engine="java" 
+    location="ofbiz.android.pos.AndroidPos" invoke="generateReceiptId" auth="true" export="true">
+        <description>Generate Receipt Id</description>
+        <attribute name="dayId" type="String" mode="IN" optional="false"/>
+        <attribute name="facilityId" type="String" mode="IN" optional="false"/>
+        
+        <attribute name="receiptId" type="String" mode="OUT" optional="true"/>
+    </service>
+    <service name="getStoreAddress" engine="java" 
+    location="ofbiz.android.pos.AndroidPos" invoke="getStoreAddress" auth="true" export="true">
+        <description>Get Store Address</description>
+        <attribute name="posTerminalId" type="String" mode="IN" optional="false"/>
+        <attribute name="facilityName" type="String" mode="OUT" optional="true"/>
+        <attribute name="directions" type="String" mode="OUT" optional="true"/>
+        <attribute name="postalCode" type="String" mode="OUT" optional="true"/>
+        <attribute name="city" type="String" mode="OUT" optional="true"/>
+        <attribute name="address1" type="String" mode="OUT" optional="true"/>
+        <attribute name="address2" type="String" mode="OUT" optional="true"/>
+        <attribute name="gstnno" type="String" mode="OUT" optional="true"/>
+    </service>
+    <service name="addGlobalProduct" engine="java" 
+    location="ofbiz.android.pos.AndroidPos" invoke="addGlobalProduct" auth="true" export="true">
+        <description>Create Global Products</description>
+        <attribute name="barcode" type="String" mode="IN" optional="false"/>
+        <attribute name="productName" type="String" mode="IN" optional="true"/>
+        <attribute name="mrp" type="String" mode="IN" optional="true"/>
+        <attribute name="sp" type="String" mode="IN" optional="true"/>
+        
+        <attribute name="productId" type="String" mode="OUT" optional="true"/>
+    </service>
+    <service name="createGlobalProduct" engine="java" 
+    location="ofbiz.android.pos.AndroidPos" invoke="createGlobalProduct" auth="true" export="true">
+        <description>Create Global Products</description>
+        <attribute name="barcode" type="String" mode="IN" optional="false"/>
+        <attribute name="productName" type="String" mode="IN" optional="true"/>
+        <attribute name="mrp" type="String" mode="IN" optional="true"/>
+        <attribute name="sp" type="String" mode="IN" optional="true"/>
+        
+        <attribute name="productId" type="String" mode="OUT" optional="true"/>
+    </service>
+	<service name="posmartCashReport" engine="java" location="ofbiz.android.pos.AndroidPos" invoke="posmartCashReport" auth="true" export="true">
+        <description>Find Cart Cash Report</description>
+        <attribute name="posTerminalId" type="String" mode="IN" optional="true"/>
+        <attribute name="productStoreId" type="String" mode="IN" optional="true"/>
+        <attribute name="fromDate" type="String" mode="IN" optional="true"/>
+        <attribute name="thruDate" type="String" mode="IN" optional="true"/>
+        
+        <attribute name="posCartSummaryList" type="java.util.List" mode="OUT" optional="true"/>
+        <attribute name="posCartSummary" type="java.util.HashMap" mode="OUT" optional="true"/>
+    </service>
+    <service name="getPosmartSummaryCashReport" engine="java" location="ofbiz.android.pos.AndroidPos" invoke="getPosmartSummaryCashReport" auth="true" export="true">
+        <description>Find Cart Cash Report</description>
+        <attribute name="billId" type="String" mode="IN" optional="true"/>
+        <attribute name="productStoreId" type="String" mode="IN" optional="true"/>
+        <attribute name="customerName" type="String" mode="IN" optional="true"/>
+        <attribute name="customerMobileNo" type="String" mode="IN" optional="true"/>
+        
+        <attribute name="posCartSummaryList" type="java.util.List" mode="OUT" optional="true"/>
+    </service>
+    <service name="customerReport" engine="java" location="ofbiz.android.pos.AndroidPos" invoke="customerReport" auth="true" export="true">
+        <description>Find pos mart customer report</description>
+        <attribute name="customerId" type="String" mode="IN" optional="true"/>
+        <attribute name="productStoreGroupId" type="String" mode="IN" optional="true"/>
+        <attribute name="currencyUomId" type="String" mode="IN" optional="true"/>
+        
+        <attribute name="posCartCustomerList" type="java.util.List" mode="OUT" optional="true"/>
+    </service>
+    <service name="createSyncCustomer" engine="java" location="ofbiz.android.pos.SyncAndroidPos" invoke="createSyncCustomer" auth="true" export="true">
+        <description>Create Sync Customer</description>
+        <attribute name="partyId" type="String" mode="INOUT" optional="true"/>
+    </service>
+    
+    <service name="createSyncProduct" engine="java" location="ofbiz.android.pos.SyncAndroidPos" invoke="createSyncProduct" 
+    	auth="true" export="true">
+        <description>Create Sync Product</description>
+        <attribute name="productId" type="String" mode="INOUT" optional="true"/>
+    </service>
+    
+    <service name="createCartTransaction" engine="java" location="ofbiz.android.pos.SyncAndroidPos" invoke="createCartTransaction" 
+    	auth="true" export="true">
+        <description>Create Sync Cart Transaction</description>
+        <attribute name="receiptId" type="String" mode="INOUT" optional="true"/>
+    </service>
+    
+    <service name="getCustomerSyncData" engine="java" location="ofbiz.android.pos.SyncAndroidPos" invoke="getCustomerSyncData" export="true">
+        <description>Sync Cart Transaction</description>
+        <attribute name="customerList" type="List" mode="INOUT" optional="true"/>
+    </service>
+    <service name="updateSyncCustomer" engine="java" location="ofbiz.android.pos.SyncAndroidPos" invoke="updateSyncCustomer" 
+    	auth="true" export="true">
+        <description>Update Sync Customer</description>
+        <attribute name="partyIds" type="String" mode="IN"/>
+    </service>
+    
+    <service name="getProductSyncData" engine="java" location="ofbiz.android.pos.SyncAndroidPos" invoke="getProductSyncData" 
+    	auth="true" export="true">
+        <description>Sync Product Transaction</description>
+        <attribute name="productList" type="List" mode="INOUT" optional="true"/>
+    </service>
+    
+    <service name="updateSyncProduct" engine="java" location="ofbiz.android.pos.SyncAndroidPos" invoke="updateSyncProduct" 
+    	auth="true" export="true">
+        <description>Update Sync Product</description>
+        <attribute name="productIds" type="String" mode="IN"/>
+    </service>
+    <service name="pushProductServer" engine="java" location="ofbiz.android.pos.SyncAndroidPos" 
+    	invoke="pushProductServer" auth="true" export="true">
+        <description>Create Global Products</description>
+        <attribute name="barcode" type="String" mode="IN" optional="false"/>
+        <attribute name="productName" type="String" mode="IN" optional="true"/>
+        <attribute name="mrp" type="String" mode="IN" optional="true"/>
+        <attribute name="sp" type="String" mode="IN" optional="true"/>
+        
+        <attribute name="productId" type="String" mode="OUT" optional="true"/>
+    </service>
+    
+    <!-- <service name="getCartSyncData" engine="java" location="ofbiz.android.pos.SyncAndroidPos" invoke="getCartSyncData" export="true">
+        <description>Sync Pos Cart Transaction</description>
+        <attribute name="cartReceiptList" type="List" mode="INOUT" optional="true"/>
+        <attribute name="cartReceiptItemList" type="List" mode="INOUT" optional="true"/>
+        <attribute name="cartReceiptPaymentList" type="List" mode="INOUT" optional="true"/>
+    </service> -->
+    
+    <service name="getCartSyncData" engine="java" location="ofbiz.android.pos.SyncAndroidPos" invoke="getCartSyncData" export="true">
+        <description>Sync Pos Cart Transaction</description>
+        <attribute name="cartTxnList" type="List" mode="INOUT" optional="true"/>
+        <attribute name="cartTxnItemList" type="List" mode="INOUT" optional="true"/>
+        <attribute name="cartTxnPaymentList" type="List" mode="INOUT" optional="true"/>
+        <attribute name="posOrderHeaderList" type="List" mode="INOUT" optional="true"/>
+        <attribute name="posOrderItemList" type="List" mode="INOUT" optional="true"/>
+    </service>
+    <service name="getPosFacilitySyncData" engine="java" location="ofbiz.android.pos.SyncAndroidPos" invoke="getPosFacilitySyncData" 
+    	auth="true" export="true">
+        <description>Sync Facility Transaction</description>
+        <attribute name="posFacilityList" type="List" mode="INOUT" optional="true"/>
+    </service>
+    <service name="getProductStoreSyncData" engine="java" location="ofbiz.android.pos.SyncAndroidPos" invoke="getProductStoreSyncData" 
+    	auth="true" export="true">
+        <description>Sync Product Store Transaction</description>
+        <attribute name="productStoreList" type="List" mode="INOUT" optional="true"/>
+    </service>
+    <service name="getPSGSyncData" engine="java" location="ofbiz.android.pos.SyncAndroidPos" invoke="getPSGSyncData" 
+    	auth="true" export="true">
+        <description>Sync Product Store Group Transaction</description>
+        <attribute name="prdStoreGrpList" type="List" mode="INOUT" optional="true"/>
+    </service>
+    <service name="getPosTerminalSyncData" engine="java" location="ofbiz.android.pos.SyncAndroidPos" invoke="getPosTerminalSyncData" 
+    	auth="true" export="true">
+        <description>Sync Pos Terminal Transaction</description>
+        <attribute name="posTerminalList" type="List" mode="INOUT" optional="true"/>
+    </service>
+    
+    <service name="pushCartTxnServer" engine="java" location="ofbiz.android.pos.SyncAndroidPos" invoke="pushCartTxnServer" 
+    	auth="true" export="true">
+        <description>Sync Pos Terminal Transaction</description>
+        <attribute name="posReceiptId" type="String" mode="IN" optional="true"/>
+        <attribute name="dayId" type="String" mode="IN" optional="true"/>
+        <attribute name="terminalId" type="String" mode="IN" optional="true"/>
+        <attribute name="posStatus" type="String" mode="IN" optional="true"/>
+        <attribute name="customerMobileNo" type="String" mode="IN" optional="true"/>
+        
+    </service>
+    <service name="pushCartItemServer" engine="java" location="ofbiz.android.pos.SyncAndroidPos" invoke="pushCartItemServer" 
+    	auth="true" export="true">
+        <description>Sync Pos Terminal Transaction</description>
+        <attribute name="receiptId" type="String" mode="IN" optional="true"/>
+        <attribute name="productId" type="String" mode="IN" optional="true"/>
+        <attribute name="dayId" type="String" mode="IN" optional="true"/>
+        <attribute name="quantity" type="String" mode="IN" optional="true"/>
+        <attribute name="productPrice" type="String" mode="IN" optional="true"/>
+    </service>
+    <service name="pushCartPaymentServer" engine="java" location="ofbiz.android.pos.SyncAndroidPos" invoke="pushCartPaymentServer" 
+    	auth="true" export="true">
+        <description>Sync Pos Terminal Transaction</description>
+        <attribute name="posCartPaymentId" type="String" mode="IN" optional="true"/>
+        <attribute name="receiptId" type="String" mode="IN" optional="true"/>
+        <attribute name="dayId" type="String" mode="IN" optional="true"/>
+        <attribute name="terminalId" type="String" mode="IN" optional="true"/>
+        <attribute name="paymentType" type="String" mode="IN" optional="true"/>
+        <attribute name="receivedPayment" type="String" mode="IN" optional="true"/>
+    </service>
+    <service name="pushCartOrderHeaderServer" engine="java" location="ofbiz.android.pos.SyncAndroidPos" invoke="pushCartOrderHeaderServer" 
+    	auth="true" export="true">
+        <description>Sync OrderHeader Transaction</description>
+        <attribute name="orderId" type="String" mode="IN" optional="true"/>
+        <attribute name="orderTypeId" type="String" mode="IN" optional="true"/>
+        <attribute name="terminalId" type="String" mode="IN" optional="true"/>
+        <attribute name="grandTotal" type="String" mode="IN" optional="true"/>
+        <attribute name="remainingSubTotal" type="String" mode="IN" optional="true"/>
+    </service>
+    <service name="pushCartOrderItemServer" engine="java" location="ofbiz.android.pos.SyncAndroidPos" invoke="pushCartOrderItemServer" 
+    	auth="true" export="true">
+        <description>Sync OrderItem Transaction</description>
+        <attribute name="orderId" type="String" mode="IN" optional="true"/>
+        <attribute name="orderItemSeqId" type="String" mode="IN" optional="true"/>
+        <attribute name="productId" type="String" mode="IN" optional="true"/>
+        <attribute name="quantity" type="String" mode="IN" optional="true"/>
+        <attribute name="unitPrice" type="String" mode="IN" optional="true"/>
+        <attribute name="unitListPrice" type="String" mode="IN" optional="true"/>
+    </service>
+    <service name="updateSyncCartTxn" engine="java" location="ofbiz.android.pos.SyncAndroidPos" invoke="updateSyncCartTxn" 
+    	auth="true" export="true">
+        <description>Update Sync Cart Txn</description>
+        <attribute name="receiptIds" type="String" mode="IN"/>
+    </service>
+    <service name="syncPosMetaData" engine="java" location="ofbiz.android.pos.SyncAndroidPos" invoke="syncPosMetaData" 
+    	auth="true" export="true">
+        <description>Sync Pos Metadata Transaction</description>
+        <attribute name="facilityName" type="String" mode="IN" optional="true"/>
+        <attribute name="facilityTypeId" type="String" mode="IN" optional="true"/>
+        <attribute name="ownerPartyId" type="String" mode="IN" optional="true"/>
+        <attribute name="description" type="String" mode="IN" optional="true"/>
+    </service>
+    <service name="syncPosTerminalData" engine="java" location="ofbiz.android.pos.SyncAndroidPos" invoke="syncPosTerminalData" 
+    	auth="true" export="true">
+        <description>Sync Pos Terminal Metadata Transaction</description>
+        <attribute name="facilityName" type="String" mode="IN" optional="true"/>
+        <attribute name="posTerminalId" type="String" mode="IN" optional="true"/>
+    </service>
+    <!-- Pos Credit Service  -->
+	<service name="createPosRetailorCredit" engine="java" location="ofbiz.android.pos.PosCredit" invoke="createPosRetailorCredit" export="true">
+		<description>Update customer profile</description>
+		<!-- Define Input params -->
+		<attribute name="customerMobileNum" type="String" mode="IN" optional="true" />
+		<attribute name="customerId" type="String" mode="IN" optional="true" />
+		<attribute name="creditAmount" type="String" mode="IN" optional="false" />
+		<attribute name="productStoreId" type="String" mode="IN" optional="false" />
+		<attribute name="billId" type="String" mode="IN" optional="false" />
+		<attribute name="dayId" type="String" mode="IN" optional="false" />
+		<attribute name="type" type="String" mode="IN" optional="false" />
+		<attribute name="retailer" type="String" mode="IN" optional="false" />
+		<attribute name="customer" type="String" mode="IN" optional="false" />
+		
+		<!-- Define o/p params -->
+		<attribute name="SUCCESS_MSG" mode="OUT" type="String" optional="true" />
+		<attribute name="creditId" mode="OUT" type="String" optional="false" />
+	</service>
+	
+	<!-- Customer Credit Service  -->
+	<service name="createPosCustomerCredit" engine="java" location="ofbiz.android.pos.PosCredit" invoke="createPosCustomerCredit" export="true">
+		<description>Update customer profile</description>
+		<!-- Define Input parameters -->
+		<attribute name="customerMobileNum" type="String" mode="IN" optional="true" />
+		<attribute name="productStoreId" type="String" mode="IN" optional="false" />
+		<attribute name="customerId" type="String" mode="IN" optional="true" />
+		<attribute name="billId" type="String" mode="IN" optional="true" />
+		<attribute name="paidAmount" type="String" mode="IN" optional="false" />
+		<attribute name="dayId" type="String" mode="IN" optional="true" />
+		<attribute name="customer" type="String" mode="IN" optional="false" />
+		<attribute name="retailer" type="String" mode="IN" optional="false" />
+		<attribute name="type" type="String" mode="IN" optional="false" />
+		
+		
+		<!-- Define o/p parameters -->
+		<attribute name="SUCCESS_MSG" mode="OUT" type="String" optional="true" />
+		<attribute name="totRetailorGivenCreditAmt" mode="OUT" type="BigDecimal" optional="true" />
+		<attribute name="totCustomerPaidCreditAmt" mode="OUT" type="BigDecimal" optional="true" />
+		<attribute name="balanceAmt" mode="OUT" type="BigDecimal" optional="true" />
+		<attribute name="creditId" mode="OUT" type="String" optional="false" />
+	</service>
+	<!-- Update Credit Limit Service  -->
+	<service name="updateCreditLimit" engine="java" location="ofbiz.android.pos.PosCredit" invoke="updateCreditLimit" export="true">
+		<description>Update customer profile</description>
+		<!-- Define Input parameters -->
+		<attribute name="partyId" type="String" mode="IN" optional="false" />
+		<attribute name="creditLimit" type="String" mode="IN" optional="false" />
+				
+		<!-- Define o/p parameters -->
+		<attribute name="SUCCESS_MSG" mode="OUT" type="String" optional="true" />
+		<attribute name="partyId" mode="OUT" type="String" optional="false" />
+	</service>
+	
+	<service name="createPosCustomerCreditNote" engine="java" location="ofbiz.android.pos.PosCreditNote" invoke="createPosCustomerCreditNote" export="true">
+		<description>Update customer profile</description>
+		<!-- Define Input params -->
+		<attribute name="creditId" type="String" mode="IN" optional="true" />
+		<attribute name="customerMobileNum" type="String" mode="IN" optional="true" />
+		<attribute name="customerId" type="String" mode="IN" optional="true" />
+		<attribute name="productStoreId" type="String" mode="IN" optional="false" />
+		<attribute name="paidAmount" type="String" mode="IN" optional="false" />
+		<attribute name="date" type="String" mode="IN" optional="true" />
+		<attribute name="billId" type="String" mode="IN" optional="false" />
+		<attribute name="dayId" type="String" mode="IN" optional="false" />
+		<attribute name="type" type="String" mode="IN" optional="false" />
+		<attribute name="retailer" type="String" mode="IN" optional="false" />
+		<attribute name="customer" type="String" mode="IN" optional="false" />
+		
+		<!-- Define o/p params -->
+		<attribute name="SUCCESS_MSG" mode="OUT" type="String" optional="true" />
+		<attribute name="creditId" mode="OUT" type="String" optional="false" />
+	</service>
+	
+		<service name="createIssueCreditNote" engine="java" location="ofbiz.android.pos.PosCreditNote" invoke="createIssueCreditNote" export="true">
+		<description>Update customer profile</description>
+		<!-- Define Input params -->
+		<attribute name="facilityId" type="String" mode="IN" optional="true" />
+		<attribute name="customerMobileNum" type="String" mode="IN" optional="true" />
+		<attribute name="customerId" type="String" mode="IN" optional="true" />
+		<attribute name="productId" type="String" mode="IN" optional="false" />
+		<attribute name="billId" type="String" mode="IN" optional="false" />
+		<attribute name="dayId" type="String" mode="IN" optional="true" />
+		<attribute name="type" type="String" mode="IN" optional="false" />
+		<attribute name="creditNoteAmount" type="String" mode="IN" optional="false" />
+		<attribute name="productStoreId" type="String" mode="IN" optional="true" />
+		<attribute name="customer" type="String" mode="IN" optional="false" />
+		<attribute name="retailer" type="String" mode="IN" optional="false" />
+		<attribute name="returnQuantity" type="String" mode="IN" optional="false" />
+		<attribute name="productPrice" type="String" mode="IN" optional="false" />
+		<!-- Define o/p params -->
+		<attribute name="SUCCESS_MSG" mode="OUT" type="String" optional="true" />
+		<attribute name="creditId" mode="OUT" type="String" optional="true" />
+	</service>
+	<service name="billSummary" engine="java" location="ofbiz.android.pos.AndroidPos" invoke="billSummary" auth="true" export="true">
+        <description>Find Bill Summary</description>
+        <attribute name="customerMobileNo" type="String" mode="IN" optional="true"/>
+        <attribute name="productStoreId" type="String" mode="IN" optional="true"/>
+        <attribute name="fromDate" type="String" mode="IN" optional="true"/>
+        <attribute name="thruDate" type="String" mode="IN" optional="true"/>
+        
+        <attribute name="posCartSummaryList" type="java.util.List" mode="OUT" optional="true"/>
+    </service>
+    <service name="getBillItems" engine="java" location="ofbiz.android.pos.AndroidPos" invoke="getBillItems" export="true">
+        <description>Find Bill Summary</description>
+        <attribute name="receiptId" type="String" mode="IN" optional="true"/>
+        <attribute name="productStoreGroupId" type="String" mode="IN" optional="true"/>
+        <attribute name="currencyUomId" type="String" mode="IN" optional="true"/>
+        
+        <attribute name="productListMap" type="java.util.List" mode="OUT" optional="true"/>
+        <attribute name="customerId" type="String" mode="OUT" optional="true"/>
+    </service>
+    <service name="getCustomerTotalCreditAmt" engine="java" location="ofbiz.android.pos.PosCredit" invoke="getCustomerTotalCreditAmt" export="true">
+        <description>Find Customer Total Credit Amt</description>
+        <attribute name="customerId" type="String" mode="IN" optional="true"/>
+        <attribute name="contactNumber" type="String" mode="IN" optional="true"/>
+        
+        <attribute name="totCreditAmt" type="BigDecimal" mode="OUT" optional="true"/>
+    </service>
+    
+    <service name="getCustomerTotalCreditDue" engine="java" location="ofbiz.android.pos.PosCredit" invoke="getCustomerTotalCreditDue" export="true">
+        <description>Find Customer Total Credit Due Amt</description>
+        <attribute name="customerId" type="String" mode="IN" optional="true"/>
+        <attribute name="contactNumber" type="String" mode="IN" optional="true"/>
+        
+        <attribute name="totCreditDueAmt" type="BigDecimal" mode="OUT" optional="true"/>
+    </service>
+    
+    <service name="getCustomerCreditLimit" engine="java" location="ofbiz.android.pos.PosCredit" invoke="getCustomerCreditLimit" export="true">
+        <description>Find Customer Total Credit Due Amt</description>
+        <attribute name="customerId" type="String" mode="IN" optional="true"/>
+        <attribute name="contactNumber" type="String" mode="IN" optional="true"/>
+        
+        <attribute name="creditLimitAmt" type="BigDecimal" mode="OUT" optional="true"/>
+    </service>
+    <service name="getCustomerCreditNoteAmt" engine="java" location="ofbiz.android.pos.PosCredit" invoke="getCustomerCreditNoteAmt" export="true">
+        <description>Find Customer Total Credit Due Amt</description>
+        <attribute name="customerId" type="String" mode="IN" optional="true"/>
+        <attribute name="contactNumber" type="String" mode="IN" optional="true"/>
+        
+        <attribute name="totCreditNoteAmount" type="BigDecimal" mode="OUT" optional="true"/>
+    </service>
+    
+    <service name="getCustomerCreditTxns" engine="java" location="ofbiz.android.pos.PosCredit" invoke="getCustomerCreditTxns" export="true">
+        <description>Find Customer Credit Txns</description>
+        <attribute name="customerId" type="String" mode="IN" optional="true"/>
+        
+        <attribute name="customerCreditTxnList" type="java.util.List" mode="OUT" optional="true"/>
+    </service>
+    <service name="clearRetailorGivenCreditAmt" engine="java" location="ofbiz.android.pos.PosCredit" invoke="clearRetailorGivenCreditAmt" export="true">
+        <description>clear retailor given credit amt</description>
+        <attribute name="receiptId" type="String" mode="IN" optional="true"/>
+        <attribute name="customerId" type="String" mode="IN" optional="true"/>
+        <attribute name="contactNumber" type="String" mode="IN" optional="true"/>
+        
+    </service>
+    <service name="clearCustomerRedeemedCreditNoteAmt" engine="java" location="ofbiz.android.pos.PosCredit" invoke="clearCustomerRedeemedCreditNoteAmt" export="true">
+        <description>clear customer redeem credit amt</description>
+        <attribute name="receiptId" type="String" mode="IN" optional="true"/>
+        <attribute name="customerId" type="String" mode="IN" optional="true"/>
+        <attribute name="contactNumber" type="String" mode="IN" optional="true"/>
+        
+    </service>
+    <service name="getCustomerCreditNoteTxns" engine="java" location="ofbiz.android.pos.PosCreditNote" invoke="getCustomerCreditNoteTxns" export="true">
+        <description>Find Customer Credit Txns</description>
+        <attribute name="customerId" type="String" mode="INOUT" optional="true"/>
+        
+        <attribute name="customerCreditNoteTxnList" type="java.util.List" mode="OUT" optional="true"/>
+    </service>
+    <service name="getActiveCreditNoteList" engine="java" location="ofbiz.android.pos.PosCreditNote" invoke="getActiveCreditNoteList" export="true">
+        <description>Find Active Customer CreditNote Txns</description>
+        <attribute name="customerId" type="String" mode="IN" optional="true"/>
+        <attribute name="contactNumber" type="String" mode="IN" optional="true"/>
+        
+        <attribute name="creditNoteList" type="java.util.List" mode="OUT" optional="true"/>
+    </service>
+    <service name="getCreditNoteAmtByCreditId" engine="java" location="ofbiz.android.pos.PosCreditNote" invoke="getCreditNoteAmtByCreditId" export="true">
+        <description>Find CreditNote Amt by Credit note id</description>
+        <attribute name="creditId" type="String" mode="IN" optional="true"/>
+        
+        <attribute name="creditNoteAmount" type="BigDecimal" mode="OUT" optional="true"/>
+    </service>
+    <service name="getCustomerCreditTakenTxns" engine="java" location="ofbiz.android.pos.PosCredit" invoke="getCustomerCreditTakenTxns" export="true">
+        <description>Find Customer Credit Taken Txns</description>
+        <attribute name="customerId" type="String" mode="IN" optional="true"/>
+        
+        <attribute name="customerCreditTakenTxnList" type="java.util.List" mode="OUT" optional="true"/>
+    </service>
+    <service name="getCustomerPrevBill" engine="java" location="ofbiz.android.pos.PosCredit" invoke="getCustomerPrevBill" export="true">
+        <description>Find Customer Previous bill</description>
+        <attribute name="customerId" type="String" mode="IN" optional="true"/>
+        <attribute name="contactNumber" type="String" mode="IN" optional="true"/>
+        
+        <attribute name="billReturnMap" type="java.util.HashMap" mode="OUT" optional="true"/>
+    </service>
+    <service name="enableTaxInvoice" engine="java" location="ofbiz.android.pos.AndroidPos" invoke="enableTaxInvoice" export="true">
+        <description>enableTaxInvoice</description>
+        <attribute name="isChecked" type="String" mode="IN" optional="true"/>
+        <attribute name="receiptId" type="String" mode="IN" optional="true"/>
+        
+        <attribute name="Success" type="String" mode="OUT" optional="true"/>
+    </service>
+    <service name="getTaxInvoice" engine="java" location="ofbiz.android.pos.AndroidPos" invoke="getTaxInvoice" export="true">
+        <description>get TaxInvoice</description>
+        <attribute name="receiptId" type="String" mode="IN" optional="true"/>
+        
+        <attribute name="isChecked" type="String" mode="OUT" optional="true"/>
+    </service>
+    <service name="updateCartTxn" engine="java" location="ofbiz.android.pos.AndroidPos" invoke="updateCartTxn" export="true">
+        <description>update cart transaction details</description>
+        <attribute name="receiptId" type="String" mode="IN" optional="true"/>
+        <attribute name="addl_discount" type="String" mode="IN" optional="true"/>
+        <attribute name="isDiscountPer" type="String" mode="IN" optional="true"/>
+        <attribute name="charges" type="String" mode="IN" optional="true"/>
+        <attribute name="isChargePer" type="String" mode="IN" optional="true"/>
+        <attribute name="billAmount" type="String" mode="IN" optional="true"/>
+        
+        <attribute name="Success" type="String" mode="OUT" optional="true"/>
+    </service>
+    <service name="getAdditionalCartTxn" engine="java" location="ofbiz.android.pos.AndroidPos" invoke="getAdditionalCartTxn" export="true">
+        <description>get TaxInvoice</description>
+        <attribute name="receiptId" type="String" mode="IN" optional="true"/>
+        <attribute name="billAmount" type="String" mode="IN" optional="true"/>
+       
+        <attribute name="discount" type="String" mode="OUT" optional="true"/>
+        <attribute name="discountPer" type="String" mode="OUT" optional="true"/>
+        <attribute name="isPercentage" type="String" mode="OUT" optional="true"/>
+        <attribute name="charges" type="String" mode="OUT" optional="true"/>
+        <attribute name="chargePer" type="String" mode="OUT" optional="true"/>
+        <attribute name="isChargePercentage" type="String" mode="OUT" optional="true"/>
+    </service>
+    
+    <service name="createUpdateCustomer" engine="java" location="ofbiz.android.pos.AndroidPos" 
+    	invoke="createUpdateCustomer" auth="true" export="true">
+        <description>Create Update Customer</description>
+        
+        <attribute name="contactNumber" type="String" mode="IN" optional="true"/>
+        <attribute name="firstName" type="String" mode="IN" optional="true"/>
+        <attribute name="lastName" type="String" mode="IN" optional="true"/>
+        <attribute name="emailAddress" type="String" mode="IN" optional="true"/>
+        <attribute name="address1" type="String" mode="IN" optional="true"/>
+        <attribute name="city" type="String" mode="IN" optional="true"/>
+        <attribute name="postalCode" type="String" mode="IN" optional="true"/>
+        <attribute name="stateProvinceGeoId" type="String" mode="IN" optional="true"/>
+        <attribute name="contactNumber" type="String" mode="IN" optional="true"/>
+        <attribute name="productStoreId" type="String" mode="IN" optional="true"/>
+        
+    </service>
+    <service name="findInventoryItems" engine="java" location="ofbiz.android.pos.AndroidPos" invoke="findInventoryItems"
+    auth="true" export="true">
+        <description>Find Inventory Items</description>
+        <attribute name="facilityId" type="String" mode="IN" optional="true"/>
+        <attribute name="days" type="String" mode="IN" optional="true"/>
+        <attribute name="inventoryItemList" type="List" mode="OUT" optional="true"/>
+    </service>
+</services>

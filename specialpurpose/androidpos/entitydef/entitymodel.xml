@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entitymodel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/entitymodel.xsd">
+    <!-- ========================================================= -->
+    <!-- ======================== Defaults ======================= -->
+    <!-- ========================================================= -->
+    <title>Entity of Androidpos Component</title>
+    <description>None</description>
+    <copyright></copyright>
+    <version></version>
+    
+    <entity entity-name="POSTerminal" package-name="org.apache.ofbiz.androidpos" title="Ofbiz Android POS - Terinal status">
+        <field name="terminalId" type="short-varchar"></field>
+        <field name="userId" type="short-varchar"></field>        
+        <prim-key field="terminalId"/>
+    </entity>
+    
+    <entity entity-name="DayDetail" package-name="org.apache.ofbiz.androidpos" title="Ofbiz Android POS - Terinal status">
+        <field name="dayId" type="id"></field>
+        
+        <field name="day" type="short-varchar"></field>
+        <field name="terminalId" type="long-varchar"></field>
+        <field name="userId" type="short-varchar"></field>
+	<field name="receiptId" type="short-varchar"></field>
+        <field name="dayStatus" type="very-short"></field>
+        <field name="adminOpeningDayStatus" type="very-short"></field>
+        <field name="adminClosingDayStatus" type="very-short"></field>
+        
+	<field name="openingDayCount2000" type="numeric"></field>
+        <field name="openingDayCount500" type="numeric"></field>
+        <field name="openingDayCount200" type="numeric"></field>
+        <field name="openingDayCount100" type="numeric"></field>
+        <field name="openingDayCount50" type="numeric"></field>
+        <field name="openingDayCount20" type="numeric"></field>
+        <field name="openingDayCount10" type="numeric"></field>
+        <field name="openingDayCount5" type="numeric"></field>
+        <field name="openingDayCount2" type="numeric"></field>
+        <field name="openingDayCount1" type="numeric"></field>
+        
+        <field name="closingDayCount2000" type="numeric"></field>
+        <field name="closingDayCount500" type="numeric"></field>
+        <field name="closingDayCount200" type="numeric"></field>
+        <field name="closingDayCount100" type="numeric"></field>
+        <field name="closingDayCount50" type="numeric"></field>
+        <field name="closingDayCount20" type="numeric"></field>
+        <field name="closingDayCount10" type="numeric"></field>
+        <field name="closingDayCount5" type="numeric"></field>
+        <field name="closingDayCount2" type="numeric"></field>
+        <field name="closingDayCount1" type="numeric"></field>
+        
+        <field name="androidDeviceVersion" type="short-varchar"></field>
+        <field name="androidDeviceId" type="short-varchar"></field>
+        <field name="androidAPKVersion" type="short-varchar"></field>
+        
+        <prim-key field="dayId"/>
+    </entity>
+    
+    <entity entity-name="PosCartTransaction" package-name="org.apache.ofbiz.androidpos" 
+    	title="Ofbiz Android POS - Pos Cart Transactions">
+    	
+        <field name="receiptId" type="id" />
+        <field name="childReceiptId" type="id" />
+        <field name="dayId" type="id" />
+        <field name="terminalId" type="id-ne" />
+        <field name="posStatus" type="id" />
+        <field name="customerMobileNo" type="id" />
+        <field name="totalBillAmount" type="currency-amount" />
+        <field name="paidAmount" type="currency-amount" />
+        <field name="balanceAmount" type="currency-amount" />
+        <field name="paymentType" type="id" />
+        <field name="paymentTransaction" type="id" />
+        <field name="withTax" type="indicator" />
+        <field name="discount" type="currency-amount" />
+        <field name="isPercentage" type="indicator" />
+        <field name="charges" type="currency-amount" />
+        <field name="isChargePercentage" type="indicator" />
+        <prim-key field="receiptId"/>
+    </entity>
+    
+    <entity entity-name="PosCartItem" package-name="org.apache.ofbiz.androidpos" title="Ofbiz Android POS - Pos Cart Item">
+        <field name="receiptId" type="id" />
+        <field name="productId" type="id-ne" />
+        <field name="dayId" type="id" />
+        <field name="quantity" type="id-ne" />
+        <field name="terminalId" type="id-ne" />
+        <field name="productPrice" type="id-ne" />
+        <field name="totalProductPrice" type="id-ne" />
+        <field name="posStatus" type="id" />
+        
+        <prim-key field="receiptId"/>
+        <prim-key field="productId"/>
+        <prim-key field="dayId"/>
+    </entity>
+    
+    <entity entity-name="PosCartReceivePayment" package-name="org.apache.ofbiz.androidpos" 
+    	title="Ofbiz Android POS - Pos Cart Receive Payment">
+    	
+    	<field name="posCartPaymentId" type="id" />
+        <field name="receiptId" type="id" />
+        <field name="dayId" type="id" />
+        <field name="terminalId" type="id-ne" />
+        <field name="paymentType" type="id" />
+        <field name="receivedPayment" type="currency-amount" />
+        <field name="paymentTransaction" type="id" />
+        
+        <prim-key field="posCartPaymentId"/>
+    </entity>
+    
+    <entity entity-name="OrderItemTxn" package-name="org.apache.ofbiz.order.order" never-cache="true"
+            title="Order Item Entity">
+      <field name="orderId" type="id-ne"></field>
+      <field name="orderItemSeqId" type="id-ne"></field>
+      <field name="externalId" type="id"></field>
+      <field name="orderItemTypeId" type="id-ne"></field>
+      <field name="orderItemGroupSeqId" type="id-ne"></field>
+      <field name="isItemGroupPrimary" type="indicator"></field>
+      <field name="fromInventoryItemId" type="id"></field>
+      <field name="budgetId" type="id"></field>
+      <field name="budgetItemSeqId" type="id"></field>
+      <field name="productId" type="id"></field>
+      <field name="supplierProductId" type="id-long"></field>
+      <field name="productFeatureId" type="id"></field>
+      <field name="prodCatalogId" type="id"></field>
+      <field name="productCategoryId" type="id"></field>
+      <field name="isPromo" type="indicator"></field>
+      <field name="quoteId" type="id"></field>
+      <field name="quoteItemSeqId" type="id"></field>
+      <field name="shoppingListId" type="id"></field>
+      <field name="shoppingListItemSeqId" type="id"></field>
+      <field name="subscriptionId" type="id"></field>
+      <field name="deploymentId" type="id"></field>
+      <field name="quantity" type="fixed-point" enable-audit-log="true"></field>
+      <field name="cancelQuantity" type="fixed-point"></field>
+      <field name="selectedAmount" type="fixed-point"></field>
+      <field name="unitPrice" type="currency-precise" enable-audit-log="true"></field>
+      <field name="unitListPrice" type="currency-precise"></field>
+      <field name="unitAverageCost" type="currency-amount"></field>
+      <field name="unitRecurringPrice" type="currency-amount"></field>
+      <field name="isModifiedPrice" type="indicator"></field>
+      <field name="recurringFreqUomId" type="id"></field>
+      <field name="itemDescription" type="description"></field>
+      <field name="comments" type="comment"></field>
+      <field name="correspondingPoId" type="id"></field>
+      <field name="statusId" type="id"></field>
+      <field name="syncStatusId" type="id"></field>
+      <field name="estimatedShipDate" type="date-time"></field>
+      <field name="estimatedDeliveryDate" type="date-time"></field>
+      <field name="autoCancelDate" type="date-time"></field>
+      <field name="dontCancelSetDate" type="date-time"></field>
+      <field name="dontCancelSetUserLogin" type="id-vlong"></field>
+      <field name="shipBeforeDate" type="date-time"></field>
+      <field name="shipAfterDate" type="date-time"></field>
+      <field name="cancelBackOrderDate" type="date-time"><description>Used to cancel all orders from suppliers when its in past</description></field>
+      <field name="overrideGlAccountId" type="id"><description>Used to specify the override or actual glAccountId used for the adjustment, avoids problems if configuration changes after initial posting, etc.</description></field>
+      <field name="salesOpportunityId" type="id-ne"></field>
+      <field name="changeByUserLoginId" type="id-vlong" enable-audit-log="true"></field>
+      <prim-key field="orderId"/>
+      <prim-key field="orderItemSeqId"/>
+      
+    </entity>
+    
+    <entity entity-name="OrderAdjustmentTxn" package-name="org.apache.ofbiz.order.order" never-cache="true"
+            title="Order Adjustment Entity">
+      <description>Note that both includeInTax and includeInShipping should default to true, except in the case where this adjustment is a tax or shipping adjustment then should be ignored.</description>
+      <field name="orderAdjustmentId" type="id-ne"></field>
+      <field name="orderAdjustmentTypeId" type="id"></field>
+      <field name="orderId" type="id"></field>
+      <field name="orderItemSeqId" type="id"></field>
+      <field name="shipGroupSeqId" type="id"></field>
+      <field name="comments" type="comment"></field>
+      <field name="description" type="description"></field>
+      <field name="amount" type="currency-precise"></field>
+      <field name="recurringAmount" type="currency-precise"></field>
+      <field name="amountAlreadyIncluded" type="currency-precise"><description>The amount here is already represented in the price, such as VAT taxes.</description></field>
+      <field name="productPromoId" type="id"></field>
+      <field name="productPromoRuleId" type="id"></field>
+      <field name="productPromoActionSeqId" type="id"></field>
+      <field name="productFeatureId" type="id"></field>
+      <field name="correspondingProductId" type="id"></field>
+      <field name="taxAuthorityRateSeqId" type="id-ne"></field>
+      <field name="sourceReferenceId" type="id-long"></field>
+      <field name="sourcePercentage" type="fixed-point">
+          <description>for tax entries this is the tax percentage</description>
+      </field>
+      <field name="customerReferenceId" type="id-long">
+          <description>for tax entries this is partyTaxId</description>
+      </field>
+      <field name="primaryGeoId" type="id">
+          <description>for tax entries this is the primary jurisdiction Geo (the smallest or most local Geo that this tax is for, usually a state/province, perhaps a county or a city)</description>
+       </field>
+      <field name="secondaryGeoId" type="id">
+          <description>for tax entries this is the secondary jurisdiction Geo (usually a country, or other Geo that the primary is within)</description>
+      </field>
+      <field name="exemptAmount" type="currency-amount">
+          <description>an amount that would normally apply, but not to this order; for tax exemption represents the what the tax would have been</description>
+      </field>
+      <field name="taxAuthGeoId" type="id">
+          <description>these taxAuth fields deprecate the primaryGeoId and secondaryGeoId fields and will be used with the newer tax calc stuff</description>
+      </field>
+      <field name="taxAuthPartyId" type="id"></field>
+      <field name="overrideGlAccountId" type="id">
+          <description>used to specify the override or actual glAccountId used for the adjustment, avoids problems if configuration changes after initial posting, etc</description>
+      </field>
+      <field name="includeInTax" type="indicator"></field>
+      <field name="includeInShipping" type="indicator"></field>
+      <field name="isManual" type="indicator"></field>
+      <field name="createdDate" type="date-time"></field>
+      <field name="createdByUserLogin" type="id-vlong"></field>
+      <field name="lastModifiedDate" type="date-time"></field>
+      <field name="lastModifiedByUserLogin" type="id-vlong"></field>
+      <field name="originalAdjustmentId" type="id">
+          <description>specifies relation to source OrderAdjustment - eg. for tax on shipping charges</description>
+      </field>
+      <!-- old fields, deprecated -->
+        <field name="oldAmountPerQuantity" col-name="AMOUNT_PER_QUANTITY" type="currency-amount"></field>
+        <field name="oldPercentage" col-name="PERCENTAGE" type="floating-point"></field>
+      <prim-key field="orderAdjustmentId"/>
+      
+    </entity>
+    <entity entity-name="SyncCustomer" package-name="org.apache.ofbiz.androidpos" title="Sync Customer table">
+        <field name="partyId" type="id"></field>
+        <field name="isSync" type="indicator"></field>
+        <prim-key field="partyId"/>
+    </entity>
+    <entity entity-name="SyncProduct" package-name="org.apache.ofbiz.androidpos" title="Sync Product table">
+        <field name="productId" type="id"></field>
+        <field name="isSync" type="indicator"></field>
+        <prim-key field="productId"/>
+    </entity>
+    <entity entity-name="SyncCartTransaction" package-name="org.apache.ofbiz.androidpos" title="Sync Cart Transaction table">
+        <field name="receiptId" type="id"></field>
+        <field name="isSync" type="indicator"></field>
+        <prim-key field="receiptId"/>
+    </entity>
+    <entity entity-name="PosCredit" package-name="org.apache.ofbiz.poscredit" title="Ofbiz Android POS - Credit And Credit Note Transactions">
+        <field name="creditId" type="id-long-ne" />
+        <field name="customerId" type="id-long-ne" />
+        <field name="billId" type="id-long-ne" />
+        <field name="type" type="id" />
+        <field name="date" type="date-time" />
+        <field name="statusId" type="id" />
+        <field name="paidAmount" type="currency-amount" />
+        <field name="balanceAmount" type="currency-amount" />
+        <field name="comments" type="id-vlong" />
+        <field name="productId" type="short-varchar" />
+        <field name="dayId" type="id" />
+        <field name="productStoreId" type="id" />
+        <field name="creditAmount" type="currency-amount" />
+        <field name="creditNoteAmount" type="currency-amount" />
+        <field name="returnQuantity" type="numeric" />
+        <field name="productPrice" type="currency-amount" />
+        <field name="customer" type="numeric" />
+        <field name="retailer" type="numeric" />
+        <field name="deadlineDate" type="date-time" />
+        
+        <prim-key field="creditId"/>
+        
+    </entity>
+    <entity entity-name="TimeDelta" package-name="org.apache.ofbiz.androidpos" 
+    	title="Ofbiz Android POS - Sync table">
+        <field name="id" type="id"></field>
+        <field name="model" type="short-varchar"></field>        
+        <field name="lastSyncData" type="date-time"></field>
+        <field name="previousSyncData" type="date-time"></field>
+        
+        <prim-key field="id"/>
+    </entity>
+</entitymodel>

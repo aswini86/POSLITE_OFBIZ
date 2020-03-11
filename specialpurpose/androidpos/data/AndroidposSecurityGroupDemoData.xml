@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-engine-xml>
+    <SecurityGroupPermission groupId="FULLADMIN" permissionId="ANDROIDPOS_ADMIN"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="ANDROIDPOS_CREATE"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="ANDROIDPOS_DELETE"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="ANDROIDPOS_UPDATE"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="ANDROIDPOS_VIEW"/>
+    <SecurityGroupPermission groupId="VIEWADMIN" permissionId="ANDROIDPOS_VIEW"/>
+    <SecurityGroupPermission groupId="BIZADMIN" permissionId="ANDROIDPOS_ADMIN"/>
+</entity-engine-xml>

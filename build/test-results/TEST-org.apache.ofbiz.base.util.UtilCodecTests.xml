@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.apache.ofbiz.base.util.UtilCodecTests" tests="4" skipped="0" failures="0" errors="0" timestamp="2020-03-09T06:57:48" hostname="arul-System-Product-Name" time="0.206">
+  <properties/>
+  <testcase name="canonicalizeRevealsEscapedXSS" classname="org.apache.ofbiz.base.util.UtilCodecTests" time="0.036"/>
+  <testcase name="checkStringForHtmlStrictNoneDetectsXSS" classname="org.apache.ofbiz.base.util.UtilCodecTests" time="0.001"/>
+  <testcase name="testGetEncoder" classname="org.apache.ofbiz.base.util.UtilCodecTests" time="0.001"/>
+  <testcase name="testCheckStringForHtmlStrictNone" classname="org.apache.ofbiz.base.util.UtilCodecTests" time="0.167"/>
+  <system-out><![CDATA[12:27:49.149 [Test worker] ERROR org.apache.ofbiz.base.util.UtilCodec - Canonicalization (format consistency, character escaping that is mixed or double, etc) error for attribute named [double-encoding], String [%2%353Cscript]: org.apache.ofbiz.base.util.UtilCodec$IntrusionException: Input validation failure
+]]></system-out>
+  <system-err><![CDATA[ERROR StatusLogger No log4j2 configuration file found. Using default configuration: logging only errors to the console.
+]]></system-err>
+</testsuite>

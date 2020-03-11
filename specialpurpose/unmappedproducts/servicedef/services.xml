@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/services.xsd">
+    <description>Unmappedproducts Services</description>
+    <vendor></vendor>
+    <version>1.0</version>
+    <service name="insertUnmappedItem" default-entity-name="UnmappedItem" engine="java" location="org.apache.ofbiz.unmapproduct.UnmappedItemService" invoke="insertUnmappedItem" auth="false" export="true">
+        <description>Insert unmapped item to staging table</description>
+        <attribute name="ean" type="String" mode="IN" optional="true"/>
+        <attribute name="facilityId" type="String" mode="IN" optional="true"/>
+        <attribute name="productName" type="String" mode="IN" optional="true"/>
+        <attribute name="description" type="String" mode="IN" optional="true"/>
+        <attribute name="batchNumber" type="String" mode="IN" optional="true"/>
+        <attribute name="quantity" type="Double" mode="IN" optional="true"/>
+        <attribute name="mrp" type="Double" mode="IN" optional="true"/>
+        <attribute name="sp" type="Double" mode="IN" optional="true"/>
+        <attribute name="cp" type="Double" mode="IN" optional="true"/>
+        <attribute name="lotId" type="String" mode="IN" optional="true"/>
+        <attribute name="expiryDate" type="String" mode="IN" optional="true"/>
+        <attribute name="mfd" type="String" mode="IN" optional="true"/>
+        
+        <attribute name="unmappedItem" type="org.apache.ofbiz.entity.GenericValue" mode="OUT" optional="true"/>		
+                      
+    </service>
+    
+    <service name="deleteUnmappedItem" engine="entity-auto" invoke="delete" default-entity-name="UnmappedItem" auth="false" export="true">
+        <description>Delete unmapped item from staging table</description>
+        <attribute name="itemId" type="String" mode="IN" optional="false"/>
+    </service>
+    
+    <service name="createunMapProduct" engine="java" location="org.apache.ofbiz.unmapproduct.UnmappedItemService" invoke="createunMapProduct" auth="false" export="true">
+        <description>Insert unmaped Articles to Product master data </description>
+        <attribute name="ean" type="String" mode="IN" optional="false"/>
+        <attribute name="internalName" type="String" mode="IN" optional="false"/>
+        <attribute name="productTypeId" type="String" mode="IN" optional="false"/>
+        <attribute name="facilityId" type="String" mode="IN" />
+        <attribute name="productId" type="String" mode="OUT" optional="false" />
+                      
+    </service>
+    
+    <service name="deleteunMapProduct" engine="java" location="org.apache.ofbiz.unmapproduct.UnmappedItemService" invoke="deleteunMapProduct" auth="false" export="true">
+        <description>Delete unmaped Articles</description>
+        <attribute name="ean" type="String" mode="INOUT" optional="false"/>
+    </service>
+</services>

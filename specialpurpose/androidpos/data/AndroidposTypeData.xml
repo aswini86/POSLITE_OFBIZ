@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-engine-xml>
+
+<TimeDelta id="10000" model="ProductStore" lastSyncData="0" previousSyncData="0"/>
+<TimeDelta id="10001" model="ProductStoreFacility" lastSyncData="0" previousSyncData="0"/>
+<TimeDelta id="10002" model="ProductStoreGroup" lastSyncData="0" previousSyncData="0"/>
+<TimeDelta id="10003" model="ProductStoreRole" lastSyncData="0" previousSyncData="0"/>
+<TimeDelta id="10004" model="Product" lastSyncData="0" previousSyncData="0"/>
+<TimeDelta id="10005" model="Party" lastSyncData="0" previousSyncData="0"/>
+<TimeDelta id="10006" model="PartyContactMech" lastSyncData="0" previousSyncData="0"/>
+<TimeDelta id="10007" model="TelecomNumber" lastSyncData="0" previousSyncData="0"/>
+<TimeDelta id="10008" model="ContactMech" lastSyncData="0" previousSyncData="0"/>
+<TimeDelta id="10009" model="PostalAddress" lastSyncData="0" previousSyncData="0"/>
+<TimeDelta id="10010" model="Person" lastSyncData="0" previousSyncData="0"/>
+<TimeDelta id="10011" model="PartyRole" lastSyncData="0" previousSyncData="0"/>
+<TimeDelta id="10012" model="ProductStoreRole" lastSyncData="0" previousSyncData="0"/>
+</entity-engine-xml>
